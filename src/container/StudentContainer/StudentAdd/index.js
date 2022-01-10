@@ -1,11 +1,9 @@
 import {Button, Form, Input, message} from "antd";
-import {useContext} from "react";
-import {UpdateContext} from "../../../context/UpdateContext";
 import request from "../../../util/request";
 
-const StudentAdd = () => {
+const StudentAdd = (props) => {
 
-  const {shouldUpdate} = useContext(UpdateContext)
+  // const {shouldUpdate} = useContext(UpdateContext)
 
   return (
     <Form
@@ -14,7 +12,8 @@ const StudentAdd = () => {
         request.put('/student', {name: values.name})
           .then(_ => {
             message.success('学生添加成功！')
-            shouldUpdate((p) => !p)
+            // shouldUpdate((p) => !p)
+            props.set((p) => !p)
           })
       }}
     >

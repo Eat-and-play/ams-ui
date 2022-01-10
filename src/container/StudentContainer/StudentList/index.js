@@ -1,11 +1,10 @@
 import request from "../../../util/request";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Table} from "antd";
-import {UpdateContext} from "../../../context/UpdateContext";
 
-const StudentList = () => {
+const StudentList = (props) => {
   const [list, setList] = useState([]);
-  const {update} = useContext(UpdateContext);
+  // const {update} = useContext(UpdateContext);
 
   useEffect(() => {
     request.get('/student/list', {
@@ -15,7 +14,7 @@ const StudentList = () => {
       .then(data => {
         setList(data.data)
       })
-  }, [update])
+  }, [props.get])
 
   const column = [
     {
